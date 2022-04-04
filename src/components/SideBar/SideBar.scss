@@ -1,0 +1,59 @@
+.SideBar {
+  position: fixed;
+  height: 100vh;
+}
+
+// Web3 Modal 
+.web3modal-modal-card{
+  display: flex!important;
+  border-radius: 0px!important;
+  padding: 100px 20px 40px 20px!important;
+}
+.web3modal-provider-container{
+  // background: green!important;
+  margin: 20px!important;
+  border-radius: 0px!important;
+  &:hover{
+    background: none !important;;
+  }
+ 
+}
+
+.web3modal-provider-wrapper{
+  margin: 10px!important;
+  &:hover{
+    border: 2px solid #0F0EA7!important;
+    background: #0f0ea703;
+    .web3modal-provider-container{
+      background: none!important;
+    }
+  }
+  // background: red!important;
+}
+.web3modal-modal-card{
+  // position: relative!important;
+  &:before{
+    // position: absolute!important;
+  content:"Connect a crypto wallet"!important;
+  // z-index: 21313123123;
+  top: 20px;
+  // color: red;
+  top: 19px;
+    position: absolute;
+    color: #636262;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  &:after{
+    // position: absolute!important;
+  content:"Connect a crypto wallet to continue with your purchase"!important;
+  // z-index: 21313123123;
+  top: 54px;
+  // color: red;
+    position: absolute;
+    color: #636262;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+}

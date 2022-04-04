@@ -1,0 +1,337 @@
+ // breakpoints
+@mixin bp-large {
+  @media only screen and (max-width: 60em) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media only screen and (max-width: 40em) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media only screen and (max-width: 30em) {
+    @content;
+  }
+}
+
+@mixin v-align($va-height: 100%, $va-direction: middle, $va-pseudo: after) {
+  white-space: nowrap;
+  text-align: center;
+
+  &:#{$va-pseudo} {
+    content: '';
+    display: inline-block;
+    vertical-align: $va-direction;
+    width: 0;
+    min-height: $va-height;
+  }
+
+  > * {
+    white-space: normal;
+    display: inline-block;
+    vertical-align: $va-direction;
+    max-width: 100%;
+  }
+}
+
+@mixin v-align-pair($child-name1, $child-name2, $valign: middle, $width1: auto, $width2: auto ) {
+  display: table;
+  .#{$child-name1}{
+    display: table-cell;
+    vertical-align: $valign;
+    width: $width1; 
+  }
+ .#{$child-name2} {
+    display: table-cell;
+    vertical-align: $valign;
+    width: $width2;
+  }
+}
+
+@mixin vertical-align-el {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin font-smoothing($value:on){
+  @if $value == on{
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+  @else{
+    -webkit-font-smoothing:subpixel-antialiased;
+    -moz-osx-font-smoothing:auto;
+  }
+}
+
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+$animation-speed: .3s !default;
+
+@mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
+  $list:();
+  @each $prop in $properties {
+    $str: #{$prop} #{$animation-speed} #{$easing};
+    $list: join($list, $str, comma);
+  }
+  transition: $list;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &::-moz-placeholder {opacity: 1; @content}
+  &:-moz-placeholder {@content}
+  &:-ms-input-placeholder {@content}
+  &.placeholder {@content}
+}
+
+@mixin rem-font-size($pxSize) {
+  font-size: $pxSize;
+  font-size: ($pxSize / 10px) + rem;
+}
+// link color
+@mixin link-color($color) {
+  color: $color;
+  &:hover, &:focus {
+    opacity:0.80;
+    text-decoration: none;
+    &:after, &:before {
+      opacity:0.80;
+    }
+  }
+}
+
+@mixin fontface ($fontfamily, $filename, $font-weight:normal, $font-style:normal) {
+	font-family: $fontfamily;
+	src: url('../fonts/#{$filename}.eot');
+	src: url('../fonts/#{$filename}.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/#{$filename}.woff') format('woff'),
+		url('../fonts/#{$filename}.ttf') format('truetype'),
+		url('../fonts/#{$filename}.svg##{$fontfamily}') format('svg');
+	font-weight: $font-weight;
+	font-style: $font-style;
+}
+
+// animation
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+// animation usage
+@include keyframes(slide-down) {
+  0% { opacity: 1; }
+  90% { opacity: 0; }
+}
+
+.element {
+  width: 100px;
+  height: 100px;
+  background: black;
+  @include animation('slide-down 5s 3');
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+// icomoon usage
+@mixin icon($content){
+	font-family: 'icomoon';
+	content: $content;
+	font-weight: normal;
+}
+// position absolute
+@mixin absolute($top:0, $right:auto, $bottom:auto, $left:0){
+  position: absolute;
+  top:$top;
+  right:$right;
+  bottom:$bottom;
+  left:$left;
+}
+ // position relative
+@mixin relative($top:0, $right:auto, $bottom:auto, $left:0){
+  position: relative;
+  top:$top;
+  right:$right;
+  bottom:$bottom;
+  left:$left;
+}
+ // position initial
+ @mixin initial($top:initial, $right:initial, $bottom:initial, $left:initial){
+   position: initial;
+   top:$top;
+   right:$right;
+   bottom:$bottom;
+   left:$left;
+ }
+// position Fixed
+@mixin fixed($top:0, $right:0, $bottom:0, $left:0){
+  position: fixed;
+  top:$top;
+  right:$right;
+  bottom:$bottom;
+  left:$left;
+}
+// vertical alignment
+@mixin inline($alignment:middle){
+	display:inline-block;
+	vertical-align:$alignment;
+}
+// fonts
+@mixin font($size: 16, $lineheight: 16, $weight:400) {
+	font-size: $size + px;
+	line-height: $lineheight + px;
+	font-weight: $weight;
+}
+@mixin fontsize($size: 16, $lineheight: 16) {
+	font-size: $size;
+	line-height: $lineheight;
+}
+// responsive image
+@mixin img-responsive{
+	max-width: 100%;
+	display: block;
+	height: auto;
+}
+//		transition
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+//		transition duration
+@mixin transition-duration($args...) {
+  -webkit-transition-duration: $args;
+  -moz-transition-duration: $args;
+  -ms-transition-duration: $args;
+  -o-transition-duration: $args;
+  transition-duration: $args;
+}
+
+//		transform
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+//		transition-delay
+@mixin transition-delay($args...) {
+  -webkit-transition-delay: $args;
+  -moz-transition-delay: $args;
+  -ms-transition-delay: $args;
+  -o-transition-delay: $args;
+  transition-delay: $args;
+}
+//		transition
+@mixin transform-origin($args...) {
+  -webkit-transform-origin: $args;
+  -moz-transform-origin: $args;
+  -ms-transform-origin: $args;
+  -o-transform-origin: $args;
+  transform-origin: $args;
+}
+
+//  Border Radious
+@mixin border-radius($args...) {
+  -webkit-border-radius: $args;
+  -moz-border-radius: $args;
+  -ms-border-radius: $args;
+  -o-border-radius: $args;
+  border-radius: $args;
+}
+
+ //  Box Shadow
+ @mixin box-shadow($args...) {
+   -webkit-box-shadow: $args;
+   -moz-box-shadow: $args;
+   -ms-box-shadow: $args;
+   -o-box-shadow: $args;
+   box-shadow: $args;
+ }
+
+//  calc
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+//  @include calc( width, '100% - 2px')
+
+ // linearGradient
+ @mixin linearGradient($top, $bottom) {
+   background: $top; /* Old browsers */
+   background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6+ */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $top), color-stop(100%, $bottom)); /* Chrome,Safari4+ */
+   background: -webkit-linear-gradient(top, $top 0%, $bottom 100%); /* Chrome10+,Safari5.1+ */
+   background: -o-linear-gradient(top, $top 0%, $bottom 100%); /* Opera 11.10+ */
+   background: -ms-linear-gradient(top, $top 0%, $bottom 100%); /* IE10+ */
+   background: linear-gradient(to top, $top 0%, $bottom 100%); /* W3C */
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000', GradientType=0); /* IE6-9 */
+ }
+
+ @mixin background($BgImg:none, $BgRepeat:no-repeat, $BgPosition:left top, $BgClip:inherit) {
+   background-image: $BgImg;
+   background-repeat: $BgRepeat;
+   background-position: $BgPosition;
+   background-clip: $BgClip;
+ }
+
+ //transition
+ @mixin transition-timing-function($timing...) {
+   -moz-transition-timing-function:    $timing;
+   -o-transition-timing-function:      $timing;
+   -webkit-transition-timing-function: $timing;
+   transition-timing-function:         $timing;
+ }
+
+
+ @mixin element-color($color) {
+   background-image: url('data:image/svg+xml;utf8,<svg ...><g stroke="#{$color}" ... /></g></svg>');
+ }

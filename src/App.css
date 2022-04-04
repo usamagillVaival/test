@@ -1,0 +1,120 @@
+
+.date_time_picker{
+    min-height: 2.5rem;
+    border: 1px solid #E2E8F0 ;
+    border-radius: 0.375rem;
+}
+.date_time_picker .form-control{
+    width: 100%;
+    min-height: 2.49rem;
+    padding: 0px 16px 0px 16px;
+    border-radius: 0.375rem;
+}
+.date_time_picker .form-control:focus-visible{
+    border-color: #3182ce!important;
+    outline-color: #3182CE;
+}
+
+input:-webkit-autofill{
+    box-shadow: none;
+}
+.image-container-dropzne{
+    max-height: 400px;
+    border: none;
+}
+.image-container-dropzne img{
+    max-height: 100%;
+    object-fit: contain;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+/*check box*/
+.myNewFormcontrol{
+    display: flex!important;
+    align-items: center;
+    width: 100%!important;
+}
+
+.mycustomcheckbox[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+    border-radius: 0px;
+    font: inherit;
+    color: currentColor;
+    width:2rem!important;
+    height: 2rem!important;
+    border: 0.15em solid #D2D2D2;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+
+.mycustomcheckbox[type="checkbox"]::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em gray;
+    /* Windows High Contrast Mode */
+    background-color: #fff;
+}
+
+.mycustomcheckbox[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+.web3modal-modal-lightbox{
+    z-index: 1500!important;
+}
+.chakra-modal__close-btn:hover{
+    border-radius: 0px!important;
+}
+.chakra-modal__content{
+    border-radius: 0px!important;
+}
+
+
+.customSelect{
+    width: 100%;
+}
+.customSelect input{
+    border: none!important;
+    box-shadow: none!important;
+
+}
+.customSelect input:focus{
+    border: none!important;
+    box-shadow: none!important;
+}
+
+.customSelectFilter{
+    width: auto;
+    margin-inline: 12px;
+
+}
+
+.customSelectSort{
+    min-width: 180px;
+}
+.IframeStyling{
+    min-height: 100vh;
+}
+
